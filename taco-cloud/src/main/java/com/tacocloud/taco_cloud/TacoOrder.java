@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import lombok.Data;
 
+@Data
 public class TacoOrder
 {
     private String deliveryName;
