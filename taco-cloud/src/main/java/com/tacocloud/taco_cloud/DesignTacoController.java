@@ -67,7 +67,7 @@ public class DesignTacoController
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
 
-        return "redirect: /orders/current";
+        return "redirect:/orders/current";
     }
 
     private Iterable <Ingredient> filterByType(

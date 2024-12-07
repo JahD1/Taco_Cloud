@@ -13,7 +13,7 @@ public class TacoOrder
     private String deliveryState;
     private String deliveryZip;
     private String ccNumber;
-    private String ccExiration;
+    private String ccExpiration;
     private String ccCVV;
 
     private List <Taco> tacos = new ArrayList<>();
