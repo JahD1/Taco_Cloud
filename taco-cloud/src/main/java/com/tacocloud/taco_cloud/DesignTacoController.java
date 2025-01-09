@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,6 +23,7 @@ import com.tacocloud.taco_cloud.Taco;
 
 public class DesignTacoController
 {
+/*
     @ModelAttribute
     public void addIngredientsToModel(Model model)
     {
@@ -43,6 +45,18 @@ public class DesignTacoController
         for(Type type : types)
         {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients,type));
+        }
+    }
+*/
+
+    @ModelAttribute
+    public void addIngredientToModel(Model model) // replaces the hard coded method above
+    {
+        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+        Type[] types = Ingredient.Type.values();
+        for(Type type: types)
+        {
+            model.addAttribute(type.toString().toLowerCase(),filterByType((List<Ingredient>) ingredients, type));
         }
     }
 
@@ -86,6 +100,16 @@ public class DesignTacoController
                 .filter(x-> x.getType().equals(type))
                 .collect(Collectors.toList());
     }
+
+    private final IngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignTacoController(IngredientRepository ingredientRepo)
+    {
+        this.ingredientRepo = ingredientRepo;
+    }
+
+
 
 
 }
